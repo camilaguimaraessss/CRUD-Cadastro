@@ -30,12 +30,24 @@ app.post('/cadastrar', (req, res) => {
     });
 });
 
-/*app.post('/deletar'), (req, res) => {
+app.get('/deletar', (req, res) =>{
+    res.sendFile(process.cwd() + "/delete.html")
+})
+
+
+app.post('/deletar', (req, res) => {
     const{ nome } = req.body;
 
-    const sql = "DELE FROM usuarios WHERE mp,e = ?";
-    db.query{sql, [nome], (err, result) =>}
-}*/
+    const sql = "DELETE FROM usuarios WHERE nome = ?";
+    db.query(sql, [nome], (err, result) =>{
+        if(err) throw err;
+        if (result.affectedRows > 0) {
+            res.send(`Usuário ${nome} deletado com sucesso!`);
+        } else {
+            res.send(`Nenhum usuário encontrado com o nome ${nome}.`);
+        }
+    });
+});
 
 app.listen(3010, () => {
     console.log(`O servidor está ativo em http://localhost:3010`);
