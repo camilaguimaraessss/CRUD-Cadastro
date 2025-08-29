@@ -3,7 +3,7 @@ import mysql from 'mysql2';
 import path from 'path';
 
 const app = express();
-const port = 3000;
+const port = 3022;
 
 // Middleware
 app.use(express.json());
@@ -15,7 +15,7 @@ const db = mysql.createConnection({
     host: 'localhost',
     user: 'root',
     database: 'crud',
-    port: 3306,
+    port: 3309,
     charset: 'utf8mb4'
 });
 
